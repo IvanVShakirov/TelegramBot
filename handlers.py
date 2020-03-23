@@ -111,9 +111,6 @@ async def send_doc(message: types.Message):
     await db.add_new_doc(text[6:])
 
 
-re.match(r'\d{1,3} .', "asdad")
-
-
 @dp.message_handler(regexp="/send_answer \d{1,3} .*")
 async def send_answer(message: types.Message):
     text = message.text
@@ -161,7 +158,7 @@ async def get_doc_list(message: types.Message):
     text = ""
     for row in result:
         text += "id : " + str(row[0]) + " | " + "author : " + str(row[1]) + " | " + "text : " + str(row[2])[
-                                                                                                :20] + "..." + "\n"
+                                                                                                :25] + "..." + "\n"
 
     await bot.send_message(chat_id, text)
 
@@ -172,6 +169,6 @@ async def get_doc_list(message: types.Message):
     result = await db.get_doc_list()
     text = ""
     for row in result:
-        text += "id : " + str(row[0]) + " | " + "answer : " + str(row[3])[:20] + "..." + "\n"
+        text += "id : " + str(row[0]) + " | " + "answer : " + str(row[3])[:30] + "..." + "\n"
 
     await bot.send_message(chat_id, text)
