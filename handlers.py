@@ -105,6 +105,21 @@ async def register_user(message: types.Message):
     await bot.send_message(chat_id, text)
 
 
+@dp.message_handler(commands=["help"])
+async def help(message: types.Message):
+    chat_id = message.from_user.id
+    text = "Доступные команды" + "\n" + "(вводить без звездочек)" \
+           + "\n" + "send *текст документа*" \
+           + "\n" + "send_answer *номер документа* *текст ответа*" \
+           + "\n" + "delete_doc *номер документа*" \
+           + "\n" + "delete_answer *номер документа*" \
+           + "\n" + "get_doc *номер документа*" \
+           + "\n" + "get_answer *номер документа*" \
+           + "\n" + "get_doc_list -список документов" \
+           + "\n" + "get_answer_list - список ответов"
+    await bot.send_message(chat_id, text)
+
+
 @dp.message_handler(regexp="/send .*")
 async def send_doc(message: types.Message):
     text = message.text
