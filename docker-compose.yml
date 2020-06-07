@@ -1,30 +1,32 @@
 version: '3.1'
 
 services:
-
   db:
-    container_name: bot_db
-    image: postgres
+    image: postgres:12
     restart: always
     ports:
       - 5432:5432
-    env_file:
-      - ".env"
-
+    environment:
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_DB: "${DB_NAME}"
 
   adminer:
-    container_name: bot_adminer
     image: adminer
     restart: always
     ports:
       - 8080:8080
 
   tgbot:
-    container_name: bot
     build:
       context: .
-    command: python app.py
     restart: always
-
-    env_file:
-      - ".env"
+    environment:
+      BOT_TOKEN: "${BOT_TOKEN}"
+      ADMIN_ID: "${ADMIN_ID}"
+      TELEGRAM_PROXY: "${TELEGRAM_PROXY}"
+      DB_NAME: "${DB_NAME}"
+      DB_USER: "${DB_USER}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      DB_PORT: 5432
+      DB_HOST: db

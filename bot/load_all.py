@@ -1,14 +1,9 @@
-import asyncio
-import logging
-
 from aiogram import Bot
 from aiogram import Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from config import BOT_TOKEN, TELEGRAM_PROXY
-from sql import create_pool,create_db
-
-# loop = asyncio.get_event_loop()
+from sql import create_pool
 
 storage = MemoryStorage()
 

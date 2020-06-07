@@ -1,4 +1,3 @@
-import random
 import re
 from aiogram import types
 from asyncpg import Connection, Record
