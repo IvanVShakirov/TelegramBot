@@ -22,6 +22,10 @@ async def create_pool():
     )
 
 
-if __name__ == '__main__':
+def main():
     loop = asyncio.get_event_loop()
     loop.run_until_complete(create_db())
+
+
+if __name__ == '__main__':
+    main()
